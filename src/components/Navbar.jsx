@@ -5,8 +5,8 @@ import Nav from "react-bootstrap/Nav";
 function Navbarr(){
     return (
 
-        <Navbar bg="dark" variant="dark" expand="lg">
-        <Navbar.Brand href="home"> Let's get registered ! </Navbar.Brand>
+        <Navbar fixed = "top" bg="light" variant="light" expand="lg">
+        <Navbar.Brand href="home"> Brand Name </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">

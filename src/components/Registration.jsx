@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import "./Registration.css";
 import Axios from "axios";
 import emailjs from "emailjs-com"
+import GoogleLogin from 'react-google-login';
 
 function sendToServer(user){
 
@@ -17,13 +18,15 @@ function sendToServer(user){
     
 
     console.log(user)
-    Axios.post('http://localhost:5000/register/add',{
+    Axios.post('http://localhost:6600/register/add',{
         "fName": user.fName,
         "lName": user.lName,
         "username": user.Username,
         "emailID": user.emailID,
         "passward": user.passward
     }).then( function(response) {console.log(response)})
+    window.location="/login";
+    
     
     
     
@@ -34,13 +37,29 @@ function sendToServer(user){
 function Registration(){
     
     
-    const { register, handleSubmit, watch } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = async(data) => {
         console.log(data)
        
         await sendToServer(data)
     };
-   
+
+    const handleLogin = async googleData => {
+       
+        const data = googleData;
+        console.log(data);
+        var user = data.profileObj;
+        Axios.post('http://localhost:6600/register/add',{
+        "fName": user.givenName,
+        "lName": user.familyName,
+        "username": user.givenName + user.familyName,
+        "emailID": user.email,
+        "passward" : user.googleId,
+        "pictureURL" : user.imageUrl
+    }).then( function(response) {console.log(response)})
+        window.location="/login";
+      }
+      
 
 
     return (
@@ -84,6 +103,13 @@ function Registration(){
         <Button variant="link" type="submit" href="/login">
             Already have an account? 
         </Button>
+        <GoogleLogin
+        clientId="489357873653-1fgenli8k45369snuovqjihedqpmlpgs.apps.googleusercontent.com"
+        buttonText="Log in with Google"
+        onSuccess={handleLogin}
+        onFailure={handleLogin}
+        cookiePolicy={'single_host_origin'}
+        />  
         </Form>
        
 

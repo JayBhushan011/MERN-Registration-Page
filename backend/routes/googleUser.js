@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
 
-let User = require('../models/register.model')
+let googleUser = require('../models/googleUser.model')
 
 router.route('/').get((req, res) => {
-  User.find()
+    googleUser.find()
     .then(users => res.json(users))
     .catch(err => res.status(400).json('Error : ' + err));
 });
@@ -14,17 +14,15 @@ router.route('/add').post((req,res) => {
   const lName = req.body.lName;
   const username = req.body.username;
   const emailID = req.body.emailID;
-  const passward = req.body.passward;
   const pictureURL = req.body.pictureURL;
 
 
   
-  const newUser = new User({
+  const newUser = new googleUser({
     fName,
     lName,
     username,
     emailID,
-    passward,
     pictureURL
   });
 

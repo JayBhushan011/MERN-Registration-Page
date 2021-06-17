@@ -1,0 +1,16 @@
+.form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.form .button{
+    margin-right: 10%;
+    margin-bottom: 8%;
+}
+
+Form{
+    padding: 10% 3%  ;
+    background-color : #CDCDCD ;
+}

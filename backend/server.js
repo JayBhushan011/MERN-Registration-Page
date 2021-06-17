@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 6600
 
 
 app.use(cors());
@@ -27,6 +27,12 @@ connection.once('open', () => {
 
 const registerRouter = require('./routes/register');
 app.use('/register', registerRouter);
+
+const googleUserRegister = require('./routes/googleUser');
+app.use('/googleUserRegister', googleUserRegister);
+
+const authAPI = require('./routes/authAPI');
+app.use('/auth', authAPI);
 
 app.get("/", function(request, response) {
   response.send("<h1>Hello World!</h1>");

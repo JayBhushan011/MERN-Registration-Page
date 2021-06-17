@@ -7,7 +7,8 @@ const userSchema = new Schema({
   lName : {type: String, required: true},
   username: {type: String, required: true, alphanumeric: true, unique: true, minlength : 3, maxlength: 30, lowercase:true},
   emailID : {type: String, required: true},
-  passward: {type: String, required: true}
+  passward: {type: String, required: true},
+  pictureURL: {type: String}
 }, {
   timestamps: true,
 });
